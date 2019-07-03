@@ -16,6 +16,23 @@
  * @brief How to build this source: g++ test.cpp -std=c++11 -o test
  * 
  */
+
+void func1(const std::shared_ptr<std::string> data)
+{
+  std::cout << "Here is in func1." << std::endl;
+  std::cout << "data's address: " << data << std::endl;
+  std::cout << "data's value:" << data->c_str() << std::endl;
+}
+
+void func2(std::shared_ptr<std::string>& data)
+{
+  std::cout << "Here is in func2." << std::endl;
+  std::cout << "data's address: " << data << std::endl;
+  std::cout << "data's value:" << data->c_str() << std::endl;
+
+  *data = "func2: data2";
+}
+
 int main(int argc, char* argv[])
 {
   //  Create new object in the heap memory
@@ -27,6 +44,9 @@ int main(int argc, char* argv[])
   
   std::cout << "new_data's count: " << new_data.use_count()<<std::endl;
   std::cout << "ref_data's count: " << ref_data.use_count()<<std::endl;
+
+  func1(ref_data);
+  func2(new_data);
 
   std::cout << "new_data's value:" << *new_data << std::endl;
   std::cout << "ref_data's value:" << *ref_data << std::endl;
