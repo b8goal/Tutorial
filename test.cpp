@@ -25,8 +25,17 @@ int main(int argc, char* argv[])
   std::cout << "new_data's address: " << new_data << std::endl;
   std::cout << "ref_data's address: " << ref_data << std::endl;
   
+  std::cout << "new_data's count: " << new_data.use_count()<<std::endl;
+  std::cout << "ref_data's count: " << ref_data.use_count()<<std::endl;
+
   std::cout << "new_data's value:" << *new_data << std::endl;
   std::cout << "ref_data's value:" << *ref_data << std::endl;
+
+  new_data.reset();
+  ref_data.reset();
+
+  std::cout << "new_data's count: " << new_data.use_count()<<std::endl;
+  std::cout << "ref_data's count: " << ref_data.use_count()<<std::endl;
 
   //  I don't care about how to free the new_data memory that was allocated heap memory using the malloc function.
 
