@@ -22,6 +22,8 @@ void func1(const std::shared_ptr<std::string> data)
   std::cout << "Here is in func1." << std::endl;
   std::cout << "data's address: " << data << std::endl;
   std::cout << "data's value:" << data->c_str() << std::endl;
+
+  *data = "func1: data1";
 }
 
 void func2(std::shared_ptr<std::string>& data)
@@ -50,6 +52,11 @@ int main(int argc, char* argv[])
 
   std::cout << "new_data's value:" << *new_data << std::endl;
   std::cout << "ref_data's value:" << *ref_data << std::endl;
+
+  std::cout << "*****************************" << std::endl;
+  std::cout << "new_data's address: " << new_data.get() << std::endl;
+  std::cout << "ref_data's address: " << ref_data << std::endl;
+  std::cout << "*****************************" << std::endl;
 
   new_data.reset();
   ref_data.reset();
