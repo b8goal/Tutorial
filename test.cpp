@@ -22,13 +22,19 @@ class Particle
 public:
   Particle()
   {
-    std::cout << "Particle creates, " << std::endl;
+    std::cout << "Particle creates. " << std::endl;
+  }
+  Particle(int nID)
+  {
+    m_nID = nID;
+    std::cout << "Particle " << m_nID << " creates. " << std::endl;
   }
   ~Particle()
   {
-    std::cout << "Particle deletes, " << std::endl;
+    std::cout << "Particle " << m_nID << " deletes." << std::endl;
   }
   int m_nID;
+  std::shared_ptr<Particle> m_Other;
 };
 
 void func1(const std::shared_ptr<std::string> data)
@@ -55,6 +61,15 @@ void func3(std::shared_ptr<Particle> data)
   data.get()[0].m_nID = 88;
   data.get()[1].m_nID = 99;
   std::cout << data.get()[0].m_nID << ", " << data.get()[1].m_nID << std::endl;
+}
+
+void func4(std::shared_ptr<Particle> data1, std::shared_ptr<Particle> data2)
+{
+  data1->m_Other = data2;
+  data2->m_Other = data1;
+
+  std::cout << "data1's ID: " << data1->m_nID << std::endl;
+  std::cout << "data2's ID: " << data2->m_nID << std::endl;
 }
 
 int main(int argc, char *argv[])
@@ -105,6 +120,16 @@ int main(int argc, char *argv[])
 
   std::shared_ptr<Particle> ParticlePtr(new Particle[2], std::default_delete<Particle[]>());
   func3(ParticlePtr);
+
+  // Even if the program is terminated, the object created by the circular reference is not destroyed
+  
+  std::cout<<std::endl;
+  std::shared_ptr<Particle> ParticlePtr1(new Particle(1));
+  {
+    std::shared_ptr<Particle> ParticlePtr2(new Particle(2));
+    func4(ParticlePtr1, ParticlePtr2);
+  }
+  std::cout << "data1's ID: " << ParticlePtr1->m_nID << std::endl;
 
   return 0;
 }
