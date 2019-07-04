@@ -68,6 +68,7 @@ int main(int argc, char* argv[])
   std::cout << "tmp_data's value: " << *tmp_data << std::endl;
 
   // Unrelated shared_ptrs are never equal.
+  std::cout<<"new_data > ref_data = " << std::boolalpha<<(new_data>ref_data)<<std::endl;
   std::cout<<"new_data < ref_data = " << std::boolalpha<<(new_data<ref_data)<<std::endl;
   std::cout<<"new_data == ref_data = "<<std::boolalpha<<(new_data == ref_data)<<std::endl;
   std::cout << "*****************************" << std::endl;
