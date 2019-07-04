@@ -50,16 +50,26 @@ int main(int argc, char* argv[])
   func1(ref_data);
   func2(new_data);
 
-  std::cout << "new_data's value:" << *new_data << std::endl;
-  std::cout << "ref_data's value:" << *ref_data << std::endl;
-
+  std::shared_ptr<std::string> tmp_data = std::make_shared<std::string>("Temporary Data");
+  
   std::cout << "*****************************" << std::endl;
+  std::cout << "new_data's value: " << *new_data << std::endl;
+  std::cout << "ref_data's value: " << *ref_data << std::endl;
+  std::cout << "tmp_data's value: " << *tmp_data << std::endl;
+
   std::cout << "new_data's address: " << new_data.get() << std::endl;
   std::cout << "ref_data's address: " << ref_data << std::endl;
+  std::cout << "tmp_data's address " << tmp_data << std::endl;
+  
+  ref_data.swap(tmp_data);
+
+  std::cout << "new_data's value: " << *new_data << std::endl;
+  std::cout << "ref_data's value: " << *ref_data << std::endl;
+  std::cout << "tmp_data's value: " << *tmp_data << std::endl;
 
   // Unrelated shared_ptrs are never equal.
-  std::cout << "new_data < ref_data = " << std::boolalpha<<(new_data<ref_data) << std::endl;
-  std::cout << "new_data == ref_data = " << std::boolalpha<<(new_data == ref_data) << std::endl;
+  std::cout<<"new_data < ref_data = " << std::boolalpha<<(new_data<ref_data)<<std::endl;
+  std::cout<<"new_data == ref_data = "<<std::boolalpha<<(new_data == ref_data)<<std::endl;
   std::cout << "*****************************" << std::endl;
 
   new_data.reset();
