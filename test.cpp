@@ -196,6 +196,8 @@ int main(int argc, char *argv[])
 
   algorithm_test();
 
+  algorithm_test();
+
   //  I don't care about how to free the new_data memory that was allocated heap memory using the malloc function.
 
   std::shared_ptr<Particle> ParticlePtr(new Particle[2], std::default_delete<Particle[]>());
