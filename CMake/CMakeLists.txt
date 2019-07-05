@@ -1,3 +1,7 @@
 PROJECT(hello)
-ADD_EXECUTABLE(hello hello.cpp;name.cpp)
+SET(SRCS
+	hello.cpp
+	name.cpp
+)
+ADD_EXECUTABLE(hello ${SRCS})
 ADD_EXECUTABLE(foo foo.cpp)
