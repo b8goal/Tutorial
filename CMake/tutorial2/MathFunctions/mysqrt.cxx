@@ -1,25 +1,25 @@
-#include <stdio.h>
+#include <iostream>
 #include "MathFunctions.h"
 
 // a hack square root calculation using simple operations
-double mysqrt(double x)
+double mysqrt(double input_num)
 {
-	if(x<=0)
+	if(input_num<=0)
 	{
 		return 0;
 	}
 	double result,delta;
-	result = x;
-
+	result = input_num;
+	delta = 0.0;
+	int sqrt_iter = 0;
 	// do ten iterations
-	int i;
-	for(i=0; i<10; ++i)
+	for(sqrt_iter=0; sqrt_iter<10; ++sqrt_iter)
 	{
 		if(result <=0)
 		{
 			result = 0.1;
 		}
-		delta = x-(result*result);
+		delta = input_num-(result*result);
 		result = result + 0.5*delta/result;
 		//fprintf(stdout,"Computing sqrt of %g to be %g\n",x,result);
 	}

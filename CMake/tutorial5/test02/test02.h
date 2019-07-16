@@ -1,5 +1,5 @@
 class TEST02
 {
-    public:
-    void Print();
+ public:
+  void Print();
 };

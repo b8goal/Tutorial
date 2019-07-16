@@ -4,10 +4,10 @@ OBJS = test02.o
 CXXFLAGS = -Wall
 
 $(LIB): $(OBJS)
-		$(AR) rv $@ $(OBJS)
+	$(AR) rv $@ $(OBJS)
 
 %.o: %.c
-		$(CC) -c $(CXXFLAGS) -I./ $< -o $@
+	$(CC) -c $(CXXFLAGS) -I./ $< -o $@
 
 clean:
-		rm -f $(OBJS) $(LIB)
+	rm -f $(OBJS) $(LIB):
