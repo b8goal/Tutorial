@@ -1,1 +1,0 @@
-ADD_EXECUTABLE(App main.c)
