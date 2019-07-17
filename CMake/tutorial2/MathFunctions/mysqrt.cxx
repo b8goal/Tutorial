@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include "MathFunctions.h"
 
@@ -19,7 +20,6 @@ double mysqrt(double input_num)
 		{
 			result = 0.1;
 		}
-		delta = input_num-(result*result);
 		result = result + 0.5*delta/result;
 		//fprintf(stdout,"Computing sqrt of %g to be %g\n",x,result);
 	}
